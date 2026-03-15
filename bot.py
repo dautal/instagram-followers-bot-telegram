@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from dotenv import load_dotenv
-from telegram import Update
+from telegram import BotCommand, Update
 from telegram.constants import ParseMode
 from telegram.ext import (
     Application,
@@ -30,6 +30,18 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 load_dotenv()
+
+
+async def _post_init(application: Application) -> None:
+    # Register bot commands with Telegram so they appear in the "/" menu.
+    await application.bot.set_my_commands(
+        [
+            BotCommand("start", "Show instructions and export steps"),
+            BotCommand("help", "Show instructions"),
+            BotCommand("check", "Run the comparison again"),
+            BotCommand("reset", "Clear uploaded files and start over"),
+        ]
+    )
 
 
 def _get_storage_dir(context: ContextTypes.DEFAULT_TYPE) -> Path:
@@ -179,7 +191,7 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
 
 def build_application(token: str) -> Application:
-    application = Application.builder().token(token).build()
+    application = Application.builder().token(token).post_init(_post_init).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("check", check_command))
