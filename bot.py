@@ -90,11 +90,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     context.chat_data.setdefault("uploads", {})
     await update.message.reply_text(
         "Send me your Instagram `followers_1.json` and `following.json` files as documents.\n\n"
-        "After I receive both, I will compare them and show:\n"
+        "To export them from Instagram:\n"
+        "1. Go to Accounts Center\n"
+        "2. Open Your information and permissions\n"
+        "3. Select Download your information\n"
+        "4. Choose Download or transfer information\n"
+        "5. Pick your Instagram account\n"
+        "6. Select Some of your information\n"
+        "7. Open Customize information and clear all\n"
+        "8. In Connections, choose only Followers and following\n"
+        "9. Set Date range to All time\n"
+        "10. Set Format to JSON\n"
+        "11. Export to device\n\n"
+        "After I receive both files, I will compare them and show:\n"
         "- who follows you but you do not follow back\n"
         "- who you follow but who do not follow you back\n\n"
-        "When you want to run another check, just send the files again.\n"
-        "Use /reset if you want to start over."
+        "When you want to do another check, just send the files again.\n"
+        "Use /check to rerun the current comparison or /reset to start over."
     )
 
 

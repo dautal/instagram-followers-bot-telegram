@@ -70,9 +70,33 @@ python3 bot.py
 
 1. Open your bot in Telegram
 2. Send `/start`
-3. Upload `followers_1.json`
-4. Upload `following.json`
-5. Read the formatted result message
+3. Export your Instagram data using the steps below
+4. Upload `followers_1.json`
+5. Upload `following.json`
+6. Read the formatted result message
+
+## How To Export Instagram Data
+
+Users should export their Instagram data like this:
+
+1. Go to `Accounts Center`
+2. Open `Your information and permissions`
+3. Select `Download your information`
+4. Choose `Download or transfer information`
+5. Pick the Instagram account
+6. Select `Some of your information`
+7. Open `Customize information`
+8. Click `Clear all`
+9. Open `Connections`
+10. Select only `Followers and following`
+11. Set `Date range` to `All time`
+12. Set `Format` to `JSON`
+13. Choose `Export to device`
+
+After Instagram finishes preparing the export, download it and send these two files to the bot:
+
+- `followers_1.json`
+- `following.json`
 
 If you want to run the comparison again without reuploading immediately, send:
 
